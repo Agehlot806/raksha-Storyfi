@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {View, Text, TouchableOpacity, Image, Modal, Alert, ScrollView} from 'react-native';
 import {COLORS, icons} from '../../constant';
 import {InputFeild, TextButton} from '../../reusableComponent';
@@ -25,10 +25,7 @@ const SignIn = ({navigation}) => {
     }
   };
 
-  useEffect(() => {
-   console.log("countryCode",countryCode);
- })
- 
+
   const renderCountryCodeModal = () => {
     return (
       <Modal animationType="slide" transparent={true} visible={countryModal}>
@@ -165,6 +162,9 @@ const SignIn = ({navigation}) => {
       Alert.alert('An error occurred. Please try again.');
     }
   };
+
+
+  
 
   return (
     <View

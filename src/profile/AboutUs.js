@@ -1,13 +1,30 @@
 import {StyleSheet, Text, View, Image,ScrollView} from 'react-native';
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import ScreenWrapper from '../../reusableComponent/ScreenWrapper';
 import {icons, images} from '../../constant';
 import LinearGradient from 'react-native-linear-gradient';
 import {TextButton} from '../../reusableComponent';
 
 const AboutUs = ({navigation}) => {
-  const [isModalVisible, setIsModalVisible] = React.useState(false);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [data, setData] = useState([]);
 
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get(
+        'https://storyfy.hirectjob.in/api/get-about-us',
+      );
+      setData(response.data.category_data);
+      console.log('shyam-----------------------', response.data.category_data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <ScrollView>
       <ScreenWrapper
@@ -25,6 +42,7 @@ const AboutUs = ({navigation}) => {
           <Image source={images.about} />
         </View>
         <View style={styles.container}>
+          
           <Text style={styles.heading}>Storyfi</Text>
           <Text style={styles.version}> Version 0.0</Text>
           <Text style={styles.contend}>
