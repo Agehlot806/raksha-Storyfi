@@ -1,37 +1,12 @@
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  ScrollView,
-  ImageBackground,
-  
-} from 'react-native';
-import React, { useEffect } from 'react';
+import {Image,StyleSheet,Text,TouchableOpacity,View,ScrollView,ImageBackground} from 'react-native';
+import React from 'react';
 import LinearGradient from 'react-native-linear-gradient';
 import {images} from '../constant';
 import SideModal from './drawer/SideModal';
-import axios from 'axios';
 
 const DashBoard = ({navigation}) => {
   const [isModalVisible, setIsModalVisible] = React.useState(false);
-  const [data, setData] = useState(null);
-
-
-  const fetchData = async () => {
-    try {
-      const response = await axios.get('http://storyfy.hirectjob.in/api/get-category');
-      setData(response.data);
-      console.log(data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
+ 
 
   return (
     <ScrollView style={{backgroundColor:'#F5F5F5'}}>
