@@ -4,6 +4,7 @@ import ScreenWrapper from '../../reusableComponent/ScreenWrapper';
 import {icons, images} from '../../constant';
 import LinearGradient from 'react-native-linear-gradient';
 import {TextButton} from '../../reusableComponent';
+import axios from 'axios';
 
 const AboutUs = ({navigation}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -37,30 +38,28 @@ const AboutUs = ({navigation}) => {
         isModalVisible={isModalVisible}
       />
 
-      <View style={styles.mainContainer}>
-        <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-          <Image source={images.about} />
-        </View>
-        <View style={styles.container}>
-          
-          <Text style={styles.heading}>Storyfi</Text>
-          <Text style={styles.version}> Version 0.0</Text>
-          <Text style={styles.contend}>
-            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-            nonum Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-            diam nonum Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-            sed diam nonum Lorem ipsum dolor sit amet, consectetuer adipiscing
-            econsectetuer adipiscing elit, sed diam nonum
-          </Text>
-
-          <Text style={styles.link}>www.StotyFi.com</Text>
-
-          <Text style={styles.link}>Help!</Text>
-        </View>
+<View style={styles.mainContainer}>
+       <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+            {/* <Image source={images.about} /> */}
+       </View>
+      {data.map((item) => (
+      <View style={styles.container}>
+      <Image
+          source={{ uri: item.logo }}
+          style={styles.image}
+        />
+      <Text style={styles.heading}>Storyfi</Text>
+      <Text style={styles.version}>{item.version}</Text>
+      <Text style={styles.contend}>{item.description}</Text>
+ <Text style={styles.link}>{item.url}</Text>
+   <Text style={styles.link}>{item.help}</Text>
+    </View>
+    ))}
         <View style={{marginHorizontal:21, marginTop: 30}}>
           <TextButton title="Review Us" onPress={() => navigation.navigate('aboutHelp')} />
         </View>
-      </View>
+      </View> 
+      
     </ScrollView>
   );
 };
@@ -103,5 +102,11 @@ const styles = StyleSheet.create({
     lineHeight: 23,
     color: '#26B3E2',
     marginTop: 20,
+  },
+  image: {
+    width: 150,
+    height: 150,
+    marginBottom: 18,
+    justifyContent:'center'
   },
 });
